@@ -1,0 +1,46 @@
+<!-- templates/home.html -->
+{% extends "layouts/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block navbar_user %}
+<div class="d-flex gap-2 align-items-center">
+    <div class="content">
+        <div class="content_links">
+            <a href="#">Log in</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<section class="col vh-100">
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <h1>Log In</h1>
+    </div>
+    <form>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="login_input" class="form-label col-2">Login</label>
+            <input type="text" class="form-control flex-grow-1" id="login_input" placeholder="Type your login here">
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="passw_input" class="form-label col-2 align-self-baseline">Password</label>
+            <input type="text" class="form-control flex-grow-1" id="passw_input" placeholder="Type your password here">
+        </div>
+
+
+
+        <div class="form_links d-flex flex-column gap-3" style="margin-left:140px;">
+            <button type="submit" class="btn btn-primary col-1">ASK!</button>
+            <a href="#">create new account</a>
+        </div>
+
+    </form>
+
+</section>
+{% endblock %}
+

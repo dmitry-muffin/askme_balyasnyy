@@ -1,0 +1,59 @@
+<!-- templates/home.html -->
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}HOT Questions{% endblock %}
+
+{% block navbar_user %}
+    <div class="d-flex gap-2 align-items-center p-2">
+        <div class="border rounded-2 overflow-hidden w-60" style="height:60px">
+            <img src="{% static "img/img.jpg" %}" alt="img" class="img-fluid h-100 object-fit-scale">
+        </div>
+
+        <div class="d-flex flex-column">
+            <div class="fw-bold mb-1">User Name</div>
+            <div class="d-flex gap-3">
+                <a href="#" class="link-primary text-decoration-none fs-6">Settings</a>
+                <a href="#" class="link-danger text-decoration-none fs-6">Log Out</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="col">
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <h1>Hot Questions</h1>
+        <a href="{% url "index" %}">New Questions</a>
+    </div>
+
+    <articles class="d-flex gap-3 flex-column">
+
+        {% for question in questions %}
+        {% include "layouts/question.html" %}
+        {% endfor %}
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </articles>
+</section>
+{% endblock %}
+
+

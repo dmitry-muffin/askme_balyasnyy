@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-2">
+                <div style="margin-bottom: 0.5rem" class="image-container w-100 aspect-ratio-1">
+                    <img src="{% static question.img %}" alt="img"
+                         class="img-fluid w-100 h-100 object-fit-contain rounded">
+                </div>
+
+                <div>
+                    <input type="number" class="form-control" value="5">
+                </div>
+
+            </div>
+            <div class="col d-flex flex-column justify-content-between">
+
+                <div>
+                    <h5 class="card-title">{{ question.title }}</h5>
+                    <p class="card-text">{{ question.text }}.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <a href="{% url "question" question.id %}">Answers</a>
+                    </div>
+                    <div class="col">
+                        <span>Tags: </span>
+                        <span class="badge rounded-pill text-bg-primary">Primary</span>
+                        <span class="badge rounded-pill text-bg-secondary">Secondary</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

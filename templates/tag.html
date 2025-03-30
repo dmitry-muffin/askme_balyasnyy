@@ -1,0 +1,93 @@
+<!-- templates/home.html -->
+{% extends "layouts/base.html" %}
+
+{% block title %}Tagged questions{% endblock %}
+
+{% block navbar_user %}
+<div class="d-flex gap-2 align-items-center">
+    <div>
+        <img src="hello.jpg" class="img-thumbnail" alt="...">
+    </div>
+    <div class="content">
+        <div class="content_name">User Name</div>
+        <div class="content_links">
+            <a href="#">Settings</a>
+            <a href="#">Log Out</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="col">
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <h1>Tag: </h1>
+        <h1>tag_x</h1>
+    </div>
+
+    <articles class="d-flex gap-3 flex-column">
+
+        {% for i in "12345" %}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <div style="height:100px" class="border mb-2 w-100">
+                            <img src="#" alt="img" class="img-fluid">
+                        </div>
+
+                        <div>
+                            <input type="number" class="form-control" value="5">
+                        </div>
+
+                    </div>
+                    <div class="col d-flex flex-column justify-content-between">
+
+                        <div>
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <a href="">Answers</a>
+                            </div>
+                            <div class="col">
+                                <span>Tags: </span>
+                                <span class="badge rounded-pill text-bg-primary">Primary</span>
+                                <span class="badge rounded-pill text-bg-secondary">Secondary</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </articles>
+</section>
+{% endblock %}
+
+

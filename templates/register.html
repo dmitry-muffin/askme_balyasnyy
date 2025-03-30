@@ -1,0 +1,57 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block navbar_user %}
+<div class="d-flex gap-2 align-items-center">
+    <div class="content">
+        <div class="content_links">
+            <a href="#">Log in</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="col vh-100">
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <h1>Registration</h1>
+    </div>
+    <form>
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="login_input" class="form-label col-2">Login</label>
+            <input type="text" class="form-control flex-grow-1" id="login_input" placeholder="user login">
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="email_input" class="form-label col-2">Email</label>
+            <input type="text" class="form-control flex-grow-1" id="email_input" placeholder="user email">
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="nickname_input" class="form-label col-2">NickName</label>
+            <input type="text" class="form-control flex-grow-1" id="nickname_input" placeholder="user nick">
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="passw_input" class="form-label col-2">Password</label>
+            <input type="password" class="form-control flex-grow-1" id="passw_input" placeholder="********">
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="passw_repeat" class="form-label col-2">Repeat password</label>
+            <input type="password" class="form-control flex-grow-1" id="passw_repeat" placeholder="********">
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center mb-3">
+            <label for="avatar_input" class="form-label col-2 align-self-baseline">Upload avatar</label>
+            <div class="d-flex flex-column align-items-left flex-grow-1">
+                <input class="form-control mb-4" type="file" id="avatar_input" style="width: 250px;">
+                <button type="submit" class="btn btn-primary" style="width:100px">Register</button>
+            </div>
+        </div>
+    </form>
+
+</section>
+{% endblock %}
