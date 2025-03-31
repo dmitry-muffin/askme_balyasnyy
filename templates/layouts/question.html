@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-2">
                 <div style="margin-bottom: 0.5rem" class="image-container w-100 aspect-ratio-1">
-                    <img src="{% static question.img %}" alt="img"
+                    <img src="{{ question.owner.get_avatar_url }}" alt="img"
                          class="img-fluid w-100 h-100 object-fit-contain rounded">
                 </div>
 
                 <div>
-                    <input type="number" class="form-control" value="5">
+                    <input type="number" class="form-control" value="{{ question.votes_count }}">
                 </div>
 
             </div>
@@ -23,7 +23,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <a href="{% url "question" question.id %}">Answers</a>
+                        <a href="{% url "question" question.id %}">Answers {{ question.answers_count }}</a>
                     </div>
                     <div class="col">
                         <span>Tags: </span>

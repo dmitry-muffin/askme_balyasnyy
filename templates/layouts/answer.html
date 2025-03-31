@@ -1,0 +1,32 @@
+{% load static %}
+<div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2">
+                                <div style="margin-bottom: 0.5rem" class="image-container w-100 aspect-ratio-1">
+                                    <img src="{{ answer.owner.get_avatar_url }}" alt="img"
+                                         class="img-fluid w-100 h-100 object-fit-contain rounded">
+                                </div>
+
+                                <div>
+                                    <input type="number" class="form-control" value="{{ answer.votes_count }}">
+                                </div>
+
+                            </div>
+                            <div class="col d-flex flex-column justify-content-between">
+
+                                <div>
+                                    <p class="card-text">{{ answer.text }}</p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{ answer.votes_count }}"
+                                               id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">Correct!</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
