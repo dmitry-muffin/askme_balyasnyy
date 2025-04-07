@@ -10,7 +10,7 @@
                 </div>
 
                 <div>
-                    <input type="number" class="form-control" value="{{ question.votes_count }}">
+                    <input type="number" class="form-control" value="{{ question.votes_count }}" readonly>
                 </div>
 
             </div>
@@ -27,8 +27,9 @@
                     </div>
                     <div class="col">
                         <span>Tags: </span>
-                        <span class="badge rounded-pill text-bg-primary">Primary</span>
-                        <span class="badge rounded-pill text-bg-secondary">Secondary</span>
+                        {% for tag in question.tags.all %}
+                        <span class="badge rounded-pill text-bg-primary">{{ tag.name }}</span>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

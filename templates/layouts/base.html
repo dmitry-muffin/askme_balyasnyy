@@ -46,21 +46,21 @@
             <section class="mb-3">
                 <h3>Popular Tags</h3>
                 <div>
-                    <span class="badge rounded-pill text-bg-primary">Primary</span>
-                    <span class="badge rounded-pill text-bg-secondary">Secondary</span>
-                    <span class="badge rounded-pill text-bg-primary">Primary</span>
-                    <span class="badge rounded-pill text-bg-secondary">Secondary</span>
-                    <span class="badge rounded-pill text-bg-primary">Primary</span>
-                    <span class="badge rounded-pill text-bg-secondary">Secondary</span>
+                    {% for tag in popular_tags %}
+                        <a href="{% url 'tag' tag.name %}" class="badge rounded-pill text-bg-primary">
+                            {{ tag.name }}
+                        </a>
+                        {#                        <span class="badge rounded-pill text-bg-primary">{{ tag.name }}</span>#}
+                    {% endfor %}
                 </div>
             </section>
 
             <section>
                 <h3>Best Members</h3>
-                <a href="#" class="d-block">Member_X</a>
-                <a href="#" class="d-block">Member_X</a>
-                <a href="#" class="d-block">Member_X</a>
-                <a href="#" class="d-block">Member_X</a>
+                {% for user in best_users %}
+
+                    <a href="" class="d-block">{{ user.user.username }}</a>
+                {% endfor %}
             </section>
         </aside>
     </div>

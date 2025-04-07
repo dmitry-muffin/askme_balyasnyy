@@ -3,7 +3,7 @@ import copy
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
-from app.models import Question, Answer
+from app.models import Question, Answer, Tag
 
 # Create your views here.
 
@@ -33,16 +33,11 @@ def hot(request):
 
 
 def question(request, question_id):
-    # Получаем вопрос из базы данных или возвращаем 404
+
     question = get_object_or_404(Question, id=question_id)
 
-    # Получаем ответы на этот вопрос с пагинацией
     answers = Answer.objects.filter(question=question).order_by('-is_correct', '-created_at')
     page = paginate(answers,request,  per_page=50)
-
-    # Увеличиваем счетчик просмотров
-    # question.views += 1
-    # question.save()
 
     context = {
         'question': question,
@@ -51,3 +46,14 @@ def question(request, question_id):
         'answers': answers,
     }
     return render(request, "single_question.html", context)
+
+def tag(request, tag_req):
+    questions = Question.objects.with_tag(tag_req)
+    page = paginate(questions, request)
+    context = {
+        'tag': tag_req,
+        'page': page,
+        'questions': page.object_list,
+        'page_obj': page,
+    }
+    return render(request, "tag.html", context)

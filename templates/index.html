@@ -4,19 +4,7 @@
 {% block title %}Home Page{% endblock %}
 
 {% block navbar_user %}
-    <div class="d-flex gap-2 align-items-center p-2">
-    <div class="border rounded-2 overflow-hidden w-60" style="height:60px">
-        <img src="{% static "img/img.jpg" %}" alt="img" class="img-fluid h-100 object-fit-scale">
-    </div>
-
-    <div class="d-flex flex-column">
-        <div class="fw-bold mb-1">User Name</div>
-        <div class="d-flex gap-3">
-            <a href="#" class="link-primary text-decoration-none fs-6">Settings</a>
-            <a href="#" class="link-danger text-decoration-none fs-6">Log Out</a>
-        </div>
-    </div>
-</div>
+{% include 'layouts/user_block.html' %}
 {% endblock %}
 
 

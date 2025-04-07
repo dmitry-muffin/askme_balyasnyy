@@ -13,7 +13,7 @@ class QuestionManager(models.Manager):
         return self.order_by('-created_at')
 
     def with_tag(self, tag_name):
-        return self.filter(tags__name=tag_name)
+        return self.filter(tags__name=tag_name).order_by('-created_at', '-id')
 
     def for_user(self, user):
         return self.filter(owner__user=user)
@@ -101,13 +101,20 @@ class Answer(models.Model):
 
 class AnswerVote(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="answer_votes")
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, related_name="answer_votes", null=True)
-    is_positive = models.BooleanField(help_text="Describes is record upvote or downvote")
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, related_name="answer_votes")
+    is_positive = models.BooleanField(help_text="Отмечает, положительный или отрицательный голос")
     created_at = models.DateTimeField()
+
+    class Meta:
+        unique_together = ('owner', 'answer')
+
 
 
 class QuestionVote(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="question_votes")
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_votes", null=True)
-    is_positive = models.BooleanField(help_text="Describes is record upvote or downvote")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_votes")
+    is_positive = models.BooleanField(help_text="Отмечает, положительный или отрицательный голос")
     created_at = models.DateTimeField()
+
+    class Meta:
+        unique_together = ('owner', 'question')
