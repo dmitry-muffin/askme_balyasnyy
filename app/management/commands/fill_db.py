@@ -17,16 +17,16 @@ class Command(BaseCommand):
 
         now = timezone.now()
 
-        # Создание тегов
+
         self.stdout.write("Создание тегов...")
         tags = []
         for i in range(ratio):
             tag = Tag(name=f"tag_{i}")
             tags.append(tag)
         Tag.objects.bulk_create(tags)
-        tags = list(Tag.objects.all())  # перечитаем теги из БД
+        tags = list(Tag.objects.all())
 
-        # Создание пользователей и профилей
+
         self.stdout.write("Создание пользователей и профилей...")
         profiles = []
         for i in range(ratio):
@@ -38,7 +38,7 @@ class Command(BaseCommand):
         Profile.objects.bulk_create(profiles)
         profiles = list(Profile.objects.all())
 
-        # Создание вопросов
+
         self.stdout.write("Создание вопросов...")
         num_questions = ratio * 10
         questions = []
@@ -54,14 +54,14 @@ class Command(BaseCommand):
         Question.objects.bulk_create(questions)
         questions = list(Question.objects.all())
 
-        # Назначение тегов для вопросов
+
         self.stdout.write("Привязка тегов к вопросам...")
         for question in questions:
-            # Выбираем от 1 до 3 случайных тегов для каждого вопроса
+
             question_tags = random.sample(tags, k=random.randint(1, min(3, len(tags))))
             question.tags.add(*question_tags)
 
-        # Создание ответов
+
         self.stdout.write("Создание ответов...")
         num_answers = ratio * 100
         answers = []
@@ -78,12 +78,12 @@ class Command(BaseCommand):
         Answer.objects.bulk_create(answers)
         answers = list(Answer.objects.all())
 
-        # Создание голосований (вопросов и ответов)
+
         self.stdout.write("Создание голосований...")
         num_votes = ratio * 200
         question_votes = []
         answer_votes = []
-        # Используем множества для отслеживания уникальных пар (owner_id, question_id) и (owner_id, answer_id)
+
         question_vote_keys = set()
         answer_vote_keys = set()
 
@@ -91,12 +91,12 @@ class Command(BaseCommand):
             owner = random.choice(profiles)
             is_positive = random.choice([True, False])
             created = now - timedelta(days=random.randint(0, 365))
-            # Решаем голосовать за вопрос или за ответ
+
             if random.choice([True, False]) and questions:
                 question = random.choice(questions)
                 key = (owner.id, question.id)
                 if key in question_vote_keys:
-                    continue  # Пропускаем, если голос уже есть
+                    continue
                 question_vote_keys.add(key)
                 vote = QuestionVote(
                     owner=owner,
@@ -109,7 +109,7 @@ class Command(BaseCommand):
                 answer = random.choice(answers)
                 key = (owner.id, answer.id)
                 if key in answer_vote_keys:
-                    continue  # Пропускаем, если голос уже есть
+                    continue
                 answer_vote_keys.add(key)
                 vote = AnswerVote(
                     owner=owner,
@@ -119,7 +119,7 @@ class Command(BaseCommand):
                 )
                 answer_votes.append(vote)
 
-        # Создаём голосования пакетно
+
         if question_votes:
             QuestionVote.objects.bulk_create(question_votes)
         if answer_votes:

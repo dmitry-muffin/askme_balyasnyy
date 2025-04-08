@@ -82,9 +82,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tp_web',
-        'USER': 'user',
-        'PASSWORD': 'admin',
-        'HOST': '176.108.254.185',
+        'USER': 'admin',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
         'PORT': '5432',
 
     }

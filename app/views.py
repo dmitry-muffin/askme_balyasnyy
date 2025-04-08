@@ -1,9 +1,8 @@
-import copy
 
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
-from app.models import Question, Answer, Tag
+from app.models import Question, Answer
 
 # Create your views here.
 
@@ -24,12 +23,13 @@ def paginate(objects, request, per_page=10):
 def index(request):
     questions = Question.objects.get_new()
     page = paginate(questions, request)
+
     return render(request, "index.html", context={'questions': page.object_list, "page_obj": page})
 
 def hot(request):
     questions = Question.objects.get_hot()
     page = paginate(questions, request)
-    return render(request, "hot.html", context={'page': page})
+    return render(request, "hot.html", context={'page_obj': page})
 
 
 def question(request, question_id):
@@ -50,6 +50,7 @@ def question(request, question_id):
 def tag(request, tag_req):
     questions = Question.objects.with_tag(tag_req)
     page = paginate(questions, request)
+
     context = {
         'tag': tag_req,
         'page': page,
@@ -57,3 +58,13 @@ def tag(request, tag_req):
         'page_obj': page,
     }
     return render(request, "tag.html", context)
+
+def ask(request):
+    return render(request, "ask.html")
+
+def login(request):
+    return render(request, "login.html")
+def register(request):
+    return render(request, "register.html")
+def settings(request):
+    return render(request, "settings.html")
