@@ -1,8 +1,10 @@
-import reverse
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 from typing import Optional
+
+from django.urls import reverse
 
 
 class QuestionManager(models.Manager):
@@ -44,8 +46,8 @@ class Profile(models.Model):
     def get_avatar_url(self):
         return self.avatar.url if self.avatar else '/static/img/img.jpg'
 
-    def get_absolute_url(self):
-        return reverse('profile', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('profile', kwargs={'pk': self.pk})
 
 
 class Tag(models.Model):
